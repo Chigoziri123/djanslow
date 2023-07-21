@@ -1,5 +1,6 @@
 from django.test import TestCase
 from rest_framework.test import APIClient, APITestCase
+from core.models import Customer
 from django.urls import reverse
 
 # Create your tests here.
@@ -7,12 +8,12 @@ from django.urls import reverse
 class SimpleTest(APITestCase):
     def setUp(self) -> None:
         self.client = APIClient()
-        self.path = reverse('home')
 
-    def test_true(self):
-        self.assertEqual(1, 1)
+    def test_assert_into_db(self):
+        client = APIClient()
+        path = reverse('add')
+        payload = {'name':'Kio Rant', 'sex':'Male', 'address':'Adejumo'}
+        response = client.post(path, payload)
+        self.assertTrue(response, 200)
 
-    def test_response(self):
-        res = self.client.post(self.path)
-        self.assertEqual(200, 200)
         

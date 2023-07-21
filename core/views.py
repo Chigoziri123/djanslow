@@ -9,7 +9,7 @@ from rest_framework.views import APIView
 def index_view(request):
     return Response({'status':status.HTTP_200_OK})
 
-def AddCustomerView(APIView):
+class AddCustomerView(APIView):
     def post(self, request):
         serializer = CustomerSerializer(data=request.data)
         if serializer.is_valid():
